@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Tasks {
 
     BufferedImage tasksImage;
-    boolean tasksAreActive = false;
+    boolean tasksAreActive = false; //если открыто окно с заданиями
     ClickableButton openTasksButton = new ClickableButton(810, 5, 150, 40, "Задания", 22, new ClickListener() {
         @Override
         public void handleClick() {
@@ -24,7 +24,7 @@ public class Tasks {
         tasksImage = ImageIO.read(Tasks.class.getResourceAsStream("tasksList.png"));
     }
 
-    public void drawTasks(Graphics g) {
+    public void drawTasksList(Graphics g) {
         if (tasksAreActive) {
             g.drawImage(tasksImage, 90, 0, 800, 800, null);
             closeTasksButton.drawButton(g);

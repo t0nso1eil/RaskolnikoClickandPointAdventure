@@ -18,26 +18,18 @@ public class Main {
 
         ClickableObject start = new ClickableObject(false,false,330, 310, 200, 100, ImageIO.read(Main.class.getResourceAsStream("buttonImage.png")), paper, "60-е годы XIX в. Бедный район Петербурга, примыкающий к Сенной площади и Екатерининскому каналу. Вы, бывший студент Родион Раскольников, проспали до трех часов дня. Проснувшись, Вы вспоминаете о содеянном: вчера в седьмом часу Вы убили старуху-процентщицу и ее сестру, Лизаветку. Вам удалось уйти незамеченным, но Вы можете входить в список подозреваемых в качестве одного из тех, кто оставлял у нее залог. Хозяйка квартиры, обеспокоенная Вашим состоянием, вызывала юного врача, студента Зосимова. Также Ваш товарищ Разумихин уже ждет Вас у себя в гостях. Однако Вас ждет в своей конторе следователь по делу старухи - Порфирий Петрович. (Дисклеймер: события книги и игры не совпадают, так как это иной ход событий, а именно: что было бы, если бы Раскольникова не мучала совесть за содеянное)", new ClickListener() {
             @Override
-            public void handleClick() {
-                System.out.println("aaaaaaaaaaaaaa");
-            }
+            public void handleClick() {}
         });
 
-        ArrayList<ClickableObject> objects1 = new ArrayList<>();
-        ArrayList<ClickableObject> objects2 = new ArrayList<>();
-        ArrayList<ClickableObject> objects3=new ArrayList<>();
-        ArrayList<ClickableObject> objects4=new ArrayList<>();
-        ArrayList<ClickableObject> objects5=new ArrayList<>();
-        ArrayList<ClickableObject> objects6=new ArrayList<>();
+        ArrayList<ClickableObject> objectsInFirstLocation = new ArrayList<>();
+        ArrayList<ClickableObject> objectsInSecondLocation = new ArrayList<>();
+        ArrayList<ClickableObject> objectsEmptyVersion=new ArrayList<>();
 
-        ArrayList<ClickableObject> wardrobes1=new ArrayList<>();
-        ArrayList<ClickableObject> wardrobes2=new ArrayList<>();
-        ArrayList<ClickableObject> wardrobes3=new ArrayList<>();
-        ArrayList<ClickableObject> wardrobes4=new ArrayList<>();
-        ArrayList<ClickableObject> wardrobes5=new ArrayList<>();
-        ArrayList<ClickableObject> wardrobes6=new ArrayList<>();
+        ArrayList<ClickableObject> wardrobesInFirstLocation=new ArrayList<>();
+        ArrayList<ClickableObject> wardrobesInSecondLocation=new ArrayList<>();
+        ArrayList<ClickableObject> wardrobesEmptyVersion=new ArrayList<>();
 
-        objects1.add(0,new ClickableObject(false,false,550, 250, 80, 80,
+        objectsInFirstLocation.add(0,new ClickableObject(false,false,550, 250, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("boots.png")),
                 paper,"Вы нашли ботинки. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -45,7 +37,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects1.add(1,new ClickableObject(true,false,180, 180, 80, 80,
+        objectsInFirstLocation.add(1,new ClickableObject(true,false,180, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("hanky.png")),
                 paper,"Вы нашли платок. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -53,7 +45,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects1.add(2,new ClickableObject(true,false,280, 180, 80, 80,
+        objectsInFirstLocation.add(2,new ClickableObject(true,false,280, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("books.png")),
                 paper,"Вы нашли стопку книг. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -61,7 +53,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects1.add(3,new ClickableObject(true,false,380, 180, 80, 80,
+        objectsInFirstLocation.add(3,new ClickableObject(true,false,380, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("ashtray.png")),
                 paper,"Вы нашли пепельницу. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -69,7 +61,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects1.add(4,new ClickableObject(true,true,480, 180, 80, 80,
+        objectsInFirstLocation.add(4,new ClickableObject(true,true,480, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("earrings.png")),
                 paper,"Вы нашли серьги. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -78,14 +70,14 @@ public class Main {
             }
         }));
 
-        objects2.add(0,new ClickableObject(true,true,180, 180, 80, 80,
+        objectsInSecondLocation.add(0,new ClickableObject(true,true,180, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("axe.png")),paper , "Вы нашли топор. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
             public void handleClick() {
                 System.out.println("!!!!!");
             }
         }));
-        objects2.add(1,new ClickableObject(true,true,283, 180, 75, 80,
+        objectsInSecondLocation.add(1,new ClickableObject(true,true,283, 180, 75, 80,
                 ImageIO.read(Main.class.getResourceAsStream("watch.png")),
                 paper,"Вы нашли часы. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -93,7 +85,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects2.add(2,new ClickableObject(true,false,380, 180, 80, 80,
+        objectsInSecondLocation.add(2,new ClickableObject(true,false,380, 180, 80, 80,
                 ImageIO.read(Main.class.getResourceAsStream("wallet.png")),
                 paper,"Вы нашли кошелек. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -101,7 +93,7 @@ public class Main {
                 System.out.println("!!!!!");
             }
         }));
-        objects2.add(3,new ClickableObject(true,false,480, 187, 100, 41,
+        objectsInSecondLocation.add(3,new ClickableObject(true,false,480, 187, 100, 41,
                 ImageIO.read(Main.class.getResourceAsStream("glasses.png")),
                 paper,"Вы нашли очки. Убедитесь, что больше не осталось вещей, указывающих на вашу причастность", new ClickListener() {
             @Override
@@ -110,25 +102,22 @@ public class Main {
             }
         }));
 
-        wardrobes1.add(0,new ClickableObject(false, false,607, 70, 533, 400, ImageIO.read(Main.class.getResourceAsStream("wardrobeHiding1.png")), paper, "111111", new ClickListener() {
+        wardrobesInFirstLocation.add(0,new ClickableObject(false, false,607, 70, 533, 400, ImageIO.read(Main.class.getResourceAsStream("wardrobeHiding1.png")), paper, "111111", new ClickListener() {
             @Override
             public void handleClick() {
                 System.out.println("clicked");
             }
         }));
-        wardrobes2.add(0,new ClickableObject(false,false, 405, 75, 360, 360, ImageIO.read(Main.class.getResourceAsStream("drawer.png")), paper, "111111", new ClickListener() {
+        wardrobesInSecondLocation.add(0,new ClickableObject(false,false, 405, 75, 360, 360, ImageIO.read(Main.class.getResourceAsStream("drawer.png")), paper, "111111", new ClickListener() {
             @Override
             public void handleClick() {
                 System.out.println("clicked");
             }
         }));
 
-        ArrayList<Hiding> hidings1 = new ArrayList<>();
-        ArrayList<Hiding> hidings2 = new ArrayList<>();
-        ArrayList<Hiding> hidings3 = new ArrayList<>();
+        ArrayList<Hiding> hidingsEmptyVersion = new ArrayList<>();
         ArrayList<Hiding> hidings4 = new ArrayList<>();
         ArrayList<Hiding> hidings5 = new ArrayList<>();
-        ArrayList<Hiding> hidings6 = new ArrayList<>();
 
         hidings4.add(0,new Hiding(1,680,185,315,325,ImageIO.read(Main.class.getResourceAsStream("dumpster.png")),"Вы можете спятать улики здесь. Это мусорка под окноами Вашей квартиры. Этот выбор повлияет на историю.",new ClickListener() {
             @Override
@@ -178,25 +167,25 @@ public class Main {
         razumihinHero.nowActiveDialogue =0;
         OtherHero sonechkaHero=new OtherHero(70,275,236,420,sonechka,dialogueofsonechka);
 
-        ArrayList<OtherHero> otherHeroes1= new ArrayList<>();
-        ArrayList<OtherHero> otherHeroes2=new ArrayList<>();
-        ArrayList<OtherHero> otherHeroes3=new ArrayList<>();
-        ArrayList<OtherHero> otherHeroes4=new ArrayList<>();
-        ArrayList<OtherHero> otherHeroes5=new ArrayList<>();
-        ArrayList<OtherHero> otherHeroes6=new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInFirstLocation= new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInSecondLocation=new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInThirdLocation=new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInFourthLocation=new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInFifthLocation=new ArrayList<>();
+        ArrayList<OtherHero> otherHeroesInSixthLoaction=new ArrayList<>();
 
-        otherHeroes2.add(zosimovHero);
-        otherHeroes3.add(sonechkaHero);
-        otherHeroes6.add(porfiriyHero);
-        otherHeroes5.add(razumihinHero);
+        otherHeroesInSecondLocation.add(zosimovHero);
+        otherHeroesInThirdLocation.add(sonechkaHero);
+        otherHeroesInSixthLoaction.add(porfiriyHero);
+        otherHeroesInFifthLocation.add(razumihinHero);
 
         Location[] locations= new Location[6];
-        locations[0] = new Location(ImageIO.read(Main.class.getResourceAsStream("raskolnikovRoom.jpg")), objects1, hidings1, otherHeroes1, wardrobes1 );
-        locations[1] = new Location(ImageIO.read(Main.class.getResourceAsStream("stairWell.jpg")),objects2, hidings2, otherHeroes2,wardrobes2);
-        locations[2] = new Location(ImageIO.read(Main.class.getResourceAsStream("sonechkaRoom.jpg")),objects3, hidings3, otherHeroes3,wardrobes3);
-        locations[3] = new Location( ImageIO.read(Main.class.getResourceAsStream("outdoors.jpg")),objects4, hidings4, otherHeroes4,wardrobes4);
-        locations[4] = new Location( ImageIO.read(Main.class.getResourceAsStream("razumihinRoom.jpg")),objects5,hidings5,otherHeroes5,wardrobes5);
-        locations[5] = new Location(ImageIO.read(Main.class.getResourceAsStream("office.jpg")),objects6,hidings6,otherHeroes6,wardrobes6);
+        locations[0] = new Location(ImageIO.read(Main.class.getResourceAsStream("raskolnikovRoom.jpg")), objectsInFirstLocation, hidingsEmptyVersion, otherHeroesInFirstLocation, wardrobesInFirstLocation );
+        locations[1] = new Location(ImageIO.read(Main.class.getResourceAsStream("stairWell.jpg")),objectsInSecondLocation, hidingsEmptyVersion, otherHeroesInSecondLocation,wardrobesInSecondLocation);
+        locations[2] = new Location(ImageIO.read(Main.class.getResourceAsStream("sonechkaRoom.jpg")),objectsEmptyVersion, hidingsEmptyVersion, otherHeroesInThirdLocation,wardrobesEmptyVersion);
+        locations[3] = new Location( ImageIO.read(Main.class.getResourceAsStream("outdoors.jpg")),objectsEmptyVersion, hidings4, otherHeroesInFourthLocation,wardrobesEmptyVersion);
+        locations[4] = new Location( ImageIO.read(Main.class.getResourceAsStream("razumihinRoom.jpg")),objectsEmptyVersion,hidings5,otherHeroesInFifthLocation,wardrobesEmptyVersion);
+        locations[5] = new Location(ImageIO.read(Main.class.getResourceAsStream("office.jpg")),objectsEmptyVersion,hidingsEmptyVersion,otherHeroesInSixthLoaction,wardrobesEmptyVersion);
         AllLocationsConnect allLocationsConnect=new AllLocationsConnect(locations);
         Inventory inventory = new Inventory(new ArrayList<>());
 
@@ -209,17 +198,16 @@ public class Main {
 
         boolean zosimovGoesToRoom=false;
         boolean zosimovLeavesRoom=false;
-        boolean done3=false;
-        boolean done4=false;
-        boolean done5=false;
+        boolean heroesAreInFirstLocation=false;
+        boolean razumihinLeaves=false;
         boolean sonechkaLeaves=false;
 
         while(true) {
             frame.repaint();
             if(!(allLocationsConnect.nowHeroIsAt ==1)&&dialogueofzosimov.get(0).dialogueIsOver &&zosimovGoesToRoom==false){
                 zosimovGoesToRoom=true;
-                otherHeroes2.remove(0);
-                otherHeroes1.add(zosimovHero);
+                otherHeroesInSecondLocation.remove(0);
+                otherHeroesInFirstLocation.add(zosimovHero);
                 dialogueofzosimov.remove(0);
                 dialogueofzosimov.add(new Dialogue(1));
                 dialogueofzosimov.get(0).scanText("raskolnikovAndZosimov1.txt");
@@ -227,39 +215,39 @@ public class Main {
             }
             if(!(allLocationsConnect.nowHeroIsAt ==0)&&dialogueofzosimov.get(0).dialogueIsOver &&zosimovLeavesRoom==false&&zosimovGoesToRoom){
                 zosimovLeavesRoom=true;
-                otherHeroes1.remove(0);
+                otherHeroesInFirstLocation.remove(0);
                 //после завершения второго диалога Зосимов уходит, доступ к этому герою закрыт
             }
-            if(dialogueofrazumihin.get(1).dialogueIsOver &&dialogueofsonechka.get(0).dialogueIsOver &&zosimovLeavesRoom&&done3==false&&dialogueofsonechka.get(1).dialogueIsOver ==false){
-                otherHeroes3.remove(0);
-                otherHeroes5.remove(0);
-                otherHeroes1.add(sonechkaHero);
-                otherHeroes1.add(razumihinHero);
-                done3=true;
+            if(dialogueofrazumihin.get(1).dialogueIsOver &&dialogueofsonechka.get(0).dialogueIsOver &&zosimovLeavesRoom&&heroesAreInFirstLocation==false&&dialogueofsonechka.get(1).dialogueIsOver ==false){
+                otherHeroesInThirdLocation.remove(0);
+                otherHeroesInFifthLocation.remove(0);
+                otherHeroesInFirstLocation.add(sonechkaHero);
+                otherHeroesInFirstLocation.add(razumihinHero);
+                heroesAreInFirstLocation=true;
                 razumihinHero.nowActiveDialogue =3;
                 //ветка встречи Разумихина, Сонечки и игрока в его комнате, герои покидают свои локации до окончания ветки
             }
-            if(otherHeroes5.size()!=0&&hidings5.get(0).closeButton.clicked){
+            if(otherHeroesInFifthLocation.size()!=0&&hidings5.get(0).closeButton.clicked){
                 razumihinHero.nowActiveDialogue =2;
                 //ветка, в которой Разумихин заметил попытку спрятать улики
             }
             if(dialogueofsonechka.get(1).dialogueIsOver &&sonechkaLeaves==false){
                 if(allLocationsConnect.nowHeroIsAt ==0){
-                    otherHeroes1.remove(0);
+                    otherHeroesInFirstLocation.remove(0);
                 }
                 if(allLocationsConnect.nowHeroIsAt ==2){
-                    otherHeroes3.remove(0);
+                    otherHeroesInThirdLocation.remove(0);
                 }
                 sonechkaLeaves=true;
                 //после окончания диалога с игроком Соня покидает локацию, доступ к героюю закрыт
             }
-            if(!done5&&dialogueofrazumihin.get(5).dialogueIsOver){
+            if(!razumihinLeaves&&dialogueofrazumihin.get(5).dialogueIsOver){
                 dialogueofrazumihin.remove(5);
                 dialogueofrazumihin.remove(4);
                 dialogueofrazumihin.remove(3);
-                otherHeroes1.remove(1);
-                otherHeroes5.add(razumihinHero);
-                done5=true;
+                otherHeroesInFirstLocation.remove(1);
+                otherHeroesInFifthLocation.add(razumihinHero);
+                razumihinLeaves=true;
                 //после завершения данной ветки доступ к ней закрывается, Разумихин возвращается в свою локацию
             }
             if(dialogueofporfiriy.get(0).dialogueIsOver &&myPanel.changeIsNeed ==0){
@@ -267,9 +255,10 @@ public class Main {
                 //активация финального выбора
             }
             if(myPanel.changeIsNeed ==1){
-                myPanel.finalon1=true;
+                myPanel.finish =true;
+                //активация финала
             }
-            if(myPanel.endingIsOn){
+            if(myPanel.endingIsOn){ //если активирована концовка
                 if(myPanel.whereIsHidden==0){
                     myPanel.ending=0;
                     myPanel.endingText="Ища улики на протяжении всего дня, Порфирий Петровч все же решил добиться разрешения на осмотр жилищ подозреваемых. Для него все стало сразу понятно: улики были у Вас. Он добился того, чтобы Вас признали виномным и отпрвили на каторгу. Соне стало Вас жалко, и она решила отпрвиться за Вами. Разумихин, Ваша мать и сестра писали Вам, переживали и ждали обратно, от остальных известий не было";

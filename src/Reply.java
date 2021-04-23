@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Reply {
+
     String text;
     int height;
     int y;

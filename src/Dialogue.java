@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class Dialogue {
 
-    int phraseIndex = 0;
-    int interactiveType;
     ArrayList<Sentence> phrasesOfHero;
-    ArrayList<OtherHeroSentence> phrases1;
-    boolean npcLine = true;
+    ArrayList<OtherHeroSentence> phrases;
     int finishOfDialogue = -1;
+    int phraseIndex = 0; //индексация в диалоге идет с 0
+    int interactiveType; //какой тип диалога: с интерактивными ответами - 0, без интерактивных ответов - 1
+    boolean otherHeroTurn = true; //сйечас фраза неигрового героя
     boolean dialogueIsOver = false;
-    boolean startPhrase = false;
+    boolean startPhrase = false; //проверка на начало фразы
 
     public Dialogue(int type) {
         this.interactiveType = type;
@@ -22,7 +22,7 @@ public class Dialogue {
             phrasesOfHero = new ArrayList<>();
         }
         if (type==1) {
-            phrases1 = new ArrayList<>();
+            phrases = new ArrayList<>();
         }
     }
 
@@ -63,7 +63,7 @@ public class Dialogue {
                 }
                 if (interactiveType == 1) {
                     if (number == 1) {
-                        phrases1.add(phraseIndex, new OtherHeroSentence(text));
+                        phrases.add(phraseIndex, new OtherHeroSentence(text));
                     }
                 }
             }
@@ -74,24 +74,24 @@ public class Dialogue {
 
     public void checkClick(MouseEvent e) {
         if(interactiveType == 0) {
-            if (npcLine) {
+            if (otherHeroTurn) {
                 if (phraseIndex == 0) {
                     if (startPhrase) {
-                        npcLine = false;
+                        otherHeroTurn = false;
                     }
                     startPhrase = true;
-                } else npcLine = false;
+                } else otherHeroTurn = false;
             } else {
                 int y = e.getY();
                 for (int i = 0; i < phrasesOfHero.get(phraseIndex).reply.length; ++i) {
-                    if (!npcLine && y > 720 - 40 - (i + 1) * phrasesOfHero.get(phraseIndex).reply[i].height && y < 720 - 40 - i * phrasesOfHero.get(phraseIndex).reply[i].height) {
-                        phraseIndex = phrasesOfHero.get(phraseIndex).reply[phrasesOfHero.get(phraseIndex).reply.length - i - 1].followingIndex;
+                    if (!otherHeroTurn && y > 720 - 40 - (i + 1) * phrasesOfHero.get(phraseIndex).reply[i].height && y < 720 - 40 - i * phrasesOfHero.get(phraseIndex).reply[i].height) { //проверяем, нужна ли смена фразы в диалоге (осуществляется при клике)
+                        phraseIndex = phrasesOfHero.get(phraseIndex).reply[phrasesOfHero.get(phraseIndex).reply.length - i - 1].followingIndex; //смена фразы на фразу со следущим индексом
                         System.out.println(phraseIndex);
-                        npcLine = true;
+                        otherHeroTurn = true;
                     }
                 }
             }
-            if (phrasesOfHero.get(phraseIndex).reply.length == 0 && npcLine == false) {
+            if (phrasesOfHero.get(phraseIndex).reply.length == 0 && otherHeroTurn == false) {
                 dialogueIsOver = true;
             }
         }
@@ -109,13 +109,13 @@ public class Dialogue {
         }
     }
 
-    public void draw(Graphics g) {
+    public void drawDialogueBox(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(0, 620 - 75, 960, 160);
         g.setColor(Color.black);
         if (interactiveType == 0) {
-            if (npcLine) {
-                phrasesOfHero.get(phraseIndex).writeInRect(g, phrasesOfHero.get(phraseIndex).text, 0, 720 - 190, 885, 150);
+            if (otherHeroTurn) {
+                phrasesOfHero.get(phraseIndex).writeInRect(g, phrasesOfHero.get(phraseIndex).text, 0, 720 - 190, 885);
             } else {
                 for (int i = 0; i < phrasesOfHero.get(phraseIndex).reply.length; ++i) {
                     phrasesOfHero.get(phraseIndex).reply[i].formatBySize(g);
@@ -123,22 +123,7 @@ public class Dialogue {
             }
         }
         if (interactiveType == 1) {
-            phrases1.get(phraseIndex).formatBySize(g, phrases1.get(phraseIndex).text, 0, 720 - 190, 885, 160);
-        }
-    }
-
-    public void write() {
-        if (interactiveType == 0) {
-            System.out.println(phrasesOfHero.size());
-            for (int i = 0; i < phrasesOfHero.size(); ++i) {
-                System.out.println(i);
-                System.out.println(phrasesOfHero.get(i).text);
-                System.out.println(phrasesOfHero.get(i).reply.length);
-                for (int j = 0; j < phrasesOfHero.get(i).reply.length; ++j) {
-                    System.out.println(phrasesOfHero.get(i).reply[j].followingIndex);
-                    System.out.println(phrasesOfHero.get(i).reply[j].text);
-                }
-            }
+            phrases.get(phraseIndex).formatBySize(g, phrases.get(phraseIndex).text, 0, 720 - 190, 885);
         }
     }
 }

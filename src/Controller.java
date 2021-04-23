@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 
 public class Controller {
     KeyboardFocusManager keyboard;
-    public boolean pressed=false;
+    public boolean pressed=false; //контролирование нажатия стрелки
     Controller(Hero hero) {
         keyboard = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         keyboard.addKeyEventDispatcher(new KeyEventDispatcher() {

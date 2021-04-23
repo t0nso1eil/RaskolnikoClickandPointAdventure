@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Inventory {
+
     ArrayList<ClickableObject> objects;
     BufferedImage backImage;
     boolean inventoryIsOn = false; //открыто ли окно инвентаря
@@ -28,6 +29,7 @@ public class Inventory {
     }
 
     public void drawInventory(Graphics g) {
+        // в случае, если нажат кнопка "Инвентарь", отрисовывается окно с предметами в инвентаре
         if (inventoryIsOn) {
             g.drawImage(backImage, 0, 80, 800, 600, null);
             closeInventoryButton.drawButton(g);
@@ -36,13 +38,14 @@ public class Inventory {
                     objects.get(i).draw(g);
                 }
                 for (int i = 0; i < objects.size(); ++i) {
-                    objects.get(i).drawExplanationOfObject(0,g);
+                    objects.get(i).drawObjectExplanation(0,g);
                 }
             }
         }
     }
 
     public void changeContent() {
+        //объекты в инвентрае выстраюваются по координатам вслучае пополнения инвентаря
         for (int i = 0; i<objects.size(); ++i) {
             objects.get(i).width = 60;
             objects.get(i).height = 60;

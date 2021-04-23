@@ -12,6 +12,7 @@ public class OtherHero {
     public double height;
     public BufferedImage otherHeroImage;
     ArrayList <Dialogue> dialogues;
+
     int nowActiveDialogue;
     boolean changeIsNeed =false;
     boolean talking=false;
@@ -43,7 +44,6 @@ public class OtherHero {
         int yy = e.getY();
         if(xx>=x && xx<=x+width && yy>=y && yy <= y + height) {
             changeIsNeed = true;
-            System.out.println("eeeee");
         }
     }
 

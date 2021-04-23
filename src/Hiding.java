@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Hiding {
+
     public int x0;
     public int y0;
     public int width;
@@ -15,11 +16,11 @@ public class Hiding {
     public BufferedImage hidingImage;
     public BufferedImage backImage;
     public String explanationText;
-    public boolean explanationIsOn = false;
+    public boolean explanationIsOn = false; //открыто пояснение к сокрытию объектов
     public ClickableButton closeButton;
 
     public boolean buttonIsClicked = false;
-    public boolean inPlace = false;
+    public boolean inPlace = false; //объект убран в шкаф, ящик и тд
 
     public ClickListener clickListener;
 
@@ -47,11 +48,11 @@ public class Hiding {
         g.drawImage(hidingImage, x0, y0, width, height, null);
     }
 
-    public  void drawMessage(Graphics g){
+    public  void drawHidingExplanation(Graphics g){
         if (explanationIsOn) {
             g.drawImage(backImage, 80, 30, 880, 500, null);
             g.setColor(Color.black);
-            this.formatBySize(g, explanationText, 280, 150, 400, 600);
+            this.formatBySize(g, explanationText, 280, 150, 400);
             closeButton.drawButton(g);
         }
     }
@@ -71,7 +72,7 @@ public class Hiding {
             explanationIsOn = true;
         }
     }
-    public void formatBySize(Graphics g, String text, int x, int y, int width, int height) {
+    public void formatBySize(Graphics g, String text, int x, int y, int width) {
         Font f = new Font("TimesRoman", Font.PLAIN, 20);
         g.setFont(f);
         ArrayList<String> strings = new ArrayList<>();

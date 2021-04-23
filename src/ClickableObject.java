@@ -11,16 +11,18 @@ public class ClickableObject {
     public int y;
     public int width;
     public int height;
-    public int taken=0;
     public BufferedImage objectImage;
     public BufferedImage backImage;
     public String explanationText;
+    public boolean hidden;
+    public boolean right;
+
+    public int taken=0; //предмет взят -1, нет - 0, используется в классе Location для подсчета предметов
     public boolean explanationIsOn = false; //открыто окно с пояснительным текстом к объекту
     public ClickableButton closeButton;
     public boolean buttonIsClicked = false;
-    public boolean hidden;
-    public boolean right;
     public boolean isTaken = false;
+
     public ClickListener clickListener;
 
     public ClickableObject(boolean hidden, boolean right, int x, int y, int width, int height, BufferedImage image, BufferedImage paper, String text, ClickListener clickListener) throws IOException {
@@ -48,12 +50,12 @@ public class ClickableObject {
         g.drawImage(objectImage, x, y, width, height, null);
     }
 
-    public  void drawExplanationOfObject(int way, Graphics g){
+    public  void drawObjectExplanation(int way, Graphics g){
         if (explanationIsOn) {
             if(way==0){
                 g.drawImage(backImage, 80, 30, 880, 500, null);
                 g.setColor(Color.black);
-                this.formatBySize(g, explanationText, 300, 150, 350, 600);
+                this.formatBySize(g, explanationText, 300, 150, 350);
                 closeButton.drawButton(g);
             }
             if(way==2){
@@ -61,7 +63,7 @@ public class ClickableObject {
                 closeButton.y=495;
                 g.drawImage(backImage, -145, 15, 1360, 720, null);
                 g.setColor(Color.black);
-                this.formatBySize(g, explanationText, 145, 150, 350, 600);
+                this.formatBySize(g, explanationText, 145, 150, 350);
                 closeButton.drawButton(g);
             }
             if(way==1){
@@ -91,7 +93,7 @@ public class ClickableObject {
             explanationIsOn = true;
         }
     }
-    public void formatBySize(Graphics g, String text, int x, int y, int width, int height) {
+    public void formatBySize(Graphics g, String text, int x, int y, int width) {
         Font textFont = new Font("TimesRoman", Font.PLAIN, 15);
         g.setFont(textFont);
         ArrayList<String> strings = new ArrayList<>();

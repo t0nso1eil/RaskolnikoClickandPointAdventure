@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Sentence {
+
     String text;
     Reply[] reply;
 
@@ -9,7 +10,7 @@ public class Sentence {
         this.text = text;
     }
 
-    public void writeInRect(Graphics g, String text, int x, int y, int width, int height) {
+    public void writeInRect(Graphics g, String text, int x, int y, int width) {
         Font textFont = new Font("TimesRoman", Font.PLAIN, 15);
         g.setFont(textFont);
         ArrayList<String> strings = new ArrayList<>();

@@ -29,7 +29,7 @@ public class Hero {
     }
 
     public void updateHero(){
-        if(yHero+height>=470){
+        if(yHero+height>=470){ //герой ограничен в своем движении: не выше 470 по оси У
             if(controller.pressed){
                 xHero=xHero+ direction.dx;
                 yHero=yHero+direction.dy;
@@ -41,6 +41,7 @@ public class Hero {
     }
 
     public void drawRaskolnikov(Graphics g){
+        //в зависимости от направления героя устанавливается то, куда он смотрит
         if(direction==Direction.RIGHT){
             g.drawImage(rascolnikovImage, (int)xHero,(int)yHero, width,height, null);
         } else {

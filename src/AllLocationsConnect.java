@@ -10,13 +10,13 @@ public class AllLocationsConnect {
     ClickableButton openMapButton = new ClickableButton(660, 5, 150, 40, "Карта",15,new ClickListener() {
         @Override
         public void handleClick() {
-            mapIsActive = true;
+            mapIsActive = true; //при нажатии кнопки открывается "карта"
         }
     });
 
     public AllLocationsConnect(Location[] locations) throws IOException {
         this.locations = locations;
-        nowHeroIsAt = 0;
+        nowHeroIsAt = 0; //изначально игрок находится в квартире своего персонажа
     }
 
     public void drawLocationChange(Graphics g) {

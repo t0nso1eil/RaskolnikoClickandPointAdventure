@@ -11,18 +11,18 @@ public class ClickableButton {
     public int height;
     public String buttonText;
     public boolean clicked=false;
-    public int textBorders = 5;
+    public int textBorders = 5; //величина отступа от края кнопки до текста
     public BufferedImage buttonImage;
     public ClickListener clickListener;
 
-    public ClickableButton(int x, int y, int width, int height, String text,int xtext, ClickListener clickListener) throws IOException {
+    public ClickableButton(int x, int y, int width, int height, String text,int textBorders, ClickListener clickListener) throws IOException {
         buttonImage = ImageIO.read(ClickableObject.class.getResourceAsStream("buttonImage.png"));
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.buttonText = text;
-        this.textBorders = xtext;
+        this.textBorders = textBorders;
         this.clickListener = clickListener;
     }
 

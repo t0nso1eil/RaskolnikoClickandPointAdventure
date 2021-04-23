@@ -15,20 +15,20 @@ public class MyPanel extends JPanel implements MouseListener {
     Location location;
     Inventory inventory;
     ClickableObject startButton;
+    BufferedImage backImage;
+    String endingText;
 
     boolean finalIsOn =false;
     int changeIsNeed =0;
     int numberOfFinalChoice=0;
     int rightNumber =0;
     int whereIsHidden=0;
-    boolean finalon1=false;
+    boolean finish =false;
     int ending;
     boolean endingIsOn=false;
-    BufferedImage paper;
-    String endingText;
 
     public MyPanel(Hero hero, AllLocationsConnect map, Inventory inventory, Tasks tasks, ClickableObject start) throws IOException {
-        this.paper= ImageIO.read(MyPanel.class.getResourceAsStream("backMessage.png"));
+        this.backImage = ImageIO.read(MyPanel.class.getResourceAsStream("backMessage.png"));
         this.startButton =start;
         this.hero=hero;
         this.tasks=tasks;
@@ -39,11 +39,7 @@ public class MyPanel extends JPanel implements MouseListener {
     }
     @Override
     protected void paintComponent(Graphics g) {
-        try {
-            location.buildLocation(g,hero);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        location.buildLocation(g,hero);
         allLocationsConnect.openMapButton.drawButton(g);
         inventory.openInventoryButton.drawButton(g);
         tasks.openTasksButton.drawButton(g);
@@ -57,7 +53,7 @@ public class MyPanel extends JPanel implements MouseListener {
             }
         }
         inventory.changeContent();
-        tasks.drawTasks(g);
+        tasks.drawTasksList(g);
         hero.updateHero();
         for(int i=0;i<location.hidings.size();i++){
             if(location.hidings.get(i).inPlace){
@@ -73,10 +69,10 @@ public class MyPanel extends JPanel implements MouseListener {
         }
         for(int i=0; i<location.otherHeroes.size(); i++) {
             if(location.otherHeroes.get(i).talking&&location.otherHeroes.get(i).changeIsNeed &&location.otherHeroes.get(i).dialogues.size()!=0){
-                location.otherHeroes.get(i).dialogues.get(location.otherHeroes.get(i).nowActiveDialogue).draw(g);
+                location.otherHeroes.get(i).dialogues.get(location.otherHeroes.get(i).nowActiveDialogue).drawDialogueBox(g);
             }
         }
-        rightNumber =0;
+        rightNumber =0; //считаем количество верных объектов
         for(int i=0;i<inventory.objects.size();i++){
             if(inventory.objects.get(i).isTaken &&inventory.objects.get(i).right){
                 rightNumber = rightNumber +1;
@@ -87,83 +83,82 @@ public class MyPanel extends JPanel implements MouseListener {
             g.setColor(new Color(40, 92, 89));
             g.fillRect(-10,-10,1000,800);
             startButton.draw(g);
-            startButton.drawExplanationOfObject(2,g);
-            if(startButton.explanationIsOn ==false){
+            startButton.drawObjectExplanation(2,g);
+            if(!startButton.explanationIsOn ){
                 g.setColor(Color.black);
-                this.writeInRect(g,"Начать",360,320,150,100);
+                this.writeInRect(g,"Начать",360,320,150);
             }
         }
         if(finalIsOn){
             g.setColor(Color.white);
             g.fillRect(0, 620 - 40, 720, 100);
             g.setColor(Color.black);
-            this.writeInRect(g,"И кто же преступник, Родион Романович?", 10,620-30,720,100);
+            this.writeInRect(g,"И кто же преступник, Родион Романович?", 10,620-30,720);
         }
-        if(finalon1){
+        if(finish){
             g.setColor(Color.white);
-            g.fillRect(0, 620 - 40, 720, 100);
+            g.fillRect(0, 620 - 40, 960, 100);
             g.setColor(Color.black);
-            this.writeInRect(g,"Миколка", 20, 600,150,30);
-            this.writeInRect(g,"Разумихин",200,600,150,30);
-            this.writeInRect(g,"Сознаться",370,600,150,30);
+            this.writeInRect(g,"Миколка", 20, 600,150);
+            this.writeInRect(g,"Разумихин",200,600,150);
+            this.writeInRect(g,"Сознаться",370,600,150);
         }
-        System.out.println("ending is"+ending);
         if(endingIsOn){
             if(ending==0){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==1){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==2){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==3){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==4){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==5){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==6){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
             if(ending==7){
                 g.setColor(new Color(40, 92, 89));
                 g.fillRect(-10,-10,1000,800);
-                g.drawImage(paper, -210, 0, 1500, 900, null);
+                g.drawImage(backImage, -210, 0, 1500, 900, null);
                 g.setColor(Color.black);
-                this.writeInRect(g, endingText, 90, 150, 400, 700);
+                this.writeInRect(g, endingText, 90, 150, 400);
             }
         }
     }
@@ -188,7 +183,7 @@ public class MyPanel extends JPanel implements MouseListener {
                 if (location.objects.get(i).explanationIsOn) {
                     location.objects.get(i).closeButton.checkClick(e);
                 }
-                if (location.objects.get(i).buttonIsClicked && location.objects.get(i).isTaken == false) {
+                if (location.objects.get(i).buttonIsClicked && !location.objects.get(i).isTaken) {
                     inventory.objects.add(location.objects.get(i));
                     location.objects.get(i).isTaken = true;
                 }
@@ -239,7 +234,7 @@ public class MyPanel extends JPanel implements MouseListener {
                 changeIsNeed =1;
             }
         }
-        if(finalon1){
+        if(finish){
             if(e.getX()>=20&&e.getX()<=170&&e.getY()>=590&&e.getY()<=650){
                 numberOfFinalChoice=1;
                 endingIsOn=true;
@@ -288,7 +283,7 @@ public class MyPanel extends JPanel implements MouseListener {
 
     }
 
-    public void writeInRect(Graphics g, String text, int x, int y, int width, int height) {
+    public void writeInRect(Graphics g, String text, int x, int y, int width) {
         Font f = new Font("TimesRoman", Font.PLAIN, 15);
         g.setFont(f);
         ArrayList<String> strings = new ArrayList<>();
