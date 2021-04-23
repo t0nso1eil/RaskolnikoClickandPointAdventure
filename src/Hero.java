@@ -29,7 +29,7 @@ public class Hero {
     }
 
     public void updateHero(){
-        if(yHero+height>=220){
+        if(yHero+height>=470){
             if(controller.pressed){
                 xHero=xHero+ direction.dx;
                 yHero=yHero+direction.dy;
