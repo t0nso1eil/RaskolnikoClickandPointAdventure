@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Raskolnikov Click and Point Adventure:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Raskolnikov_Click_and_Point_Adventure_jar</output-path>
+    <root id="archive" name="Raskolnikov Click and Point Adventure.jar">
+      <element id="module-output" name="Raskolnikov Click and Point Adventure" />
+    </root>
+  </artifact>
+</component>
