@@ -115,7 +115,7 @@ public class Dialogue {
         g.setColor(Color.black);
         if (interactiveType == 0) {
             if (otherHeroTurn) {
-                phrasesOfHero.get(phraseIndex).writeInRect(g, phrasesOfHero.get(phraseIndex).text, 0, 720 - 190, 885);
+                phrasesOfHero.get(phraseIndex).formatBySize(g, phrasesOfHero.get(phraseIndex).text, 0, 720 - 190, 885);
             } else {
                 for (int i = 0; i < phrasesOfHero.get(phraseIndex).reply.length; ++i) {
                     phrasesOfHero.get(phraseIndex).reply[i].formatBySize(g);
