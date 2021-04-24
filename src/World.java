@@ -40,8 +40,10 @@ public class World extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         location.buildLocation(g,hero);
-        for(int i =0; i<location.otherHeroes.size();i++){
-            location.otherHeroes.get(i).drawOtherHero(g);
+        for(int i=0; i<location.otherHeroes.size(); i++) {
+            if (location.otherHeroes.get(i).y + location.otherHeroes.get(i).height >= hero.yHero + hero.height) {
+                location.otherHeroes.get(i).drawOtherHero(g);
+            }
         }
         allLocationsConnect.openMapButton.drawButton(g);
         inventory.openInventoryButton.drawButton(g);
@@ -50,11 +52,6 @@ public class World extends JPanel implements MouseListener {
             allLocationsConnect.drawLocationChange(g);
         }
         inventory.drawInventory(g);
-        for(int i=0; i<location.otherHeroes.size(); i++) {
-            if (location.otherHeroes.get(i).y + location.otherHeroes.get(i).height >= hero.yHero + hero.height) {
-                location.otherHeroes.get(i).drawOtherHero(g);
-            }
-        }
         inventory.changeContent();
         tasks.drawTasksList(g);
         hero.updateHero();
