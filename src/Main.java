@@ -190,7 +190,7 @@ public class Main {
         Inventory inventory = new Inventory(new ArrayList<>());
 
         Hero hero=new Hero(90, 200,allLocationsConnect.locations[allLocationsConnect.nowHeroIsAt]);
-        MyPanel myPanel= new MyPanel(hero, allLocationsConnect, inventory, new Tasks(), start);
+        World myPanel= new World(hero, allLocationsConnect, inventory, new Tasks(), start);
         frame.add(myPanel);
         frame.setSize(960+15, 720);
         frame.setVisible(true);

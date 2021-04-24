@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MyPanel extends JPanel implements MouseListener {
+public class World extends JPanel implements MouseListener {
 
     Hero hero;
     Tasks tasks;
@@ -27,8 +27,8 @@ public class MyPanel extends JPanel implements MouseListener {
     int ending;
     boolean endingIsOn=false;
 
-    public MyPanel(Hero hero, AllLocationsConnect map, Inventory inventory, Tasks tasks, ClickableObject start) throws IOException {
-        this.backImage = ImageIO.read(MyPanel.class.getResourceAsStream("backMessage.png"));
+    public World(Hero hero, AllLocationsConnect map, Inventory inventory, Tasks tasks, ClickableObject start) throws IOException {
+        this.backImage = ImageIO.read(World.class.getResourceAsStream("backMessage.png"));
         this.startButton =start;
         this.hero=hero;
         this.tasks=tasks;
