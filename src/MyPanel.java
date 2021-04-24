@@ -40,6 +40,9 @@ public class MyPanel extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         location.buildLocation(g,hero);
+        for(int i =0; i<location.otherHeroes.size();i++){
+            location.otherHeroes.get(i).drawOtherHero(g);
+        }
         allLocationsConnect.openMapButton.drawButton(g);
         inventory.openInventoryButton.drawButton(g);
         tasks.openTasksButton.drawButton(g);

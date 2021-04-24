@@ -37,9 +37,6 @@ public class Location {
         for(int i=0;i<hidings.size();i++){
             hidings.get(i).draw(g);
         }
-        for(int i=0; i<otherHeroes.size(); i++){
-            otherHeroes.get(i).drawOtherHero(g);
-        }
         hero.drawRaskolnikov(g);
         for (int i=0; i<hidings.size();i++){
             hidings.get(i).drawHidingExplanation(g);
